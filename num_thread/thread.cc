@@ -4,15 +4,17 @@
 #include <vector>
 #include <numeric>
 
-int run_benchmark_once() {
+int run_benchmark_once()
+{
     using namespace std::chrono;
     auto start_time = high_resolution_clock::now();
     auto end_time = start_time + seconds(1);
 
     int created = 0;
 
-    while (high_resolution_clock::now() < end_time) {
-        std::thread t([]{}); // Minimal thread function
+    while (high_resolution_clock::now() < end_time)
+    {
+        std::thread t([] {}); // Minimal thread function
         t.join();
         created++;
     }
@@ -20,11 +22,13 @@ int run_benchmark_once() {
     return created;
 }
 
-int main() {
+int main()
+{
     const int runs = 10;
     std::vector<int> results;
 
-    for (int i = 0; i < runs; ++i) {
+    for (int i = 0; i < runs; ++i)
+    {
         int count = run_benchmark_once();
         results.push_back(count);
         std::cout << "Run " << (i + 1) << ": " << count << " threads created/destroyed\n";
