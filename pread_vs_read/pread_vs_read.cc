@@ -61,7 +61,7 @@ size_t GetFileSize(const char *filename)
 // Single-threaded read benchmark
 long long BenchmarkRead(const char *filename, size_t buffer_size)
 {
-  int fd = open(filename, O_RDONLY);
+  int fd = open(filename, O_RDONLY | O_DIRECT);
   if (fd < 0)
   {
     perror("open");
@@ -106,7 +106,7 @@ long long BenchmarkPread(const char *filename, size_t buffer_size, int num_threa
   if (file_size == 0)
     return -1;
 
-  int fd = open(filename, O_RDONLY);
+  int fd = open(filename, O_RDONLY | O_DIRECT);
   if (fd < 0)
   {
     perror("open");
@@ -170,8 +170,10 @@ int main(int argc, char *argv[])
 {
   if (argc != 3)
   {
-    cerr << "Usage: " << argv[0] << " <filename> << " << "<buffersize>(bytes unit) "
+    std::cout << "Usage: " << argv[0] << " <filename> << " << "<buffersize>(bytes unit) "
                                                          "\n";
+    std::cout << "Note: Because page cache is bypassed(with O_DIRECT), buffer size
+                  should be carefully chosen" << std::endl;
     return 1;
   }
 
