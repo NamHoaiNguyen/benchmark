@@ -32,8 +32,8 @@ long benchmark_fork() {
       ::wait(NULL);
       count++;
     }
-    
-    
+
+
     auto current_time = std::chrono::high_resolution_clock::now();
     std::chrono::seconds elapsed =
         std::chrono::duration_cast<std::chrono::seconds>(current_time - start_time);
@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
     return 0;
   }
 
-  int num_tests = static_cast<int>(std::stoi(argv[2]));
+  int num_tests = static_cast<int>(std::stoi(argv[1]));
   if (num_tests <= 0 || num_tests > 20) {
     return 0;
   }

@@ -172,8 +172,8 @@ int main(int argc, char *argv[])
   {
     std::cout << "Usage: " << argv[0] << " <filename> << " << "<buffersize>(bytes unit) "
                                                          "\n";
-    std::cout << "Note: Because page cache is bypassed(with O_DIRECT), buffer size
-                  should be carefully chosen" << std::endl;
+    std::cout << "Note: Because page cache is bypassed(with O_DIRECT), buffer size"
+              << " should be carefully chosen" << std::endl;
     return 1;
   }
 
